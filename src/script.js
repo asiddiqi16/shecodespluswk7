@@ -84,10 +84,15 @@ function updateTemperature(response) {
   let currentWind = Math.round(response.data.wind.speed * 3.6);
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = " " + currentWind + " ";
+
+  let todaysDate = new Date(response.data.time * 1000);
+  /*   console.log(response.data);
+  console.log(response.data.time); */
+  let dateElement = document.querySelector("#current-date");
+
+  dateElement.innerHTML = formatDate(todaysDate);
 }
 function updateForecast(response) {
-  console.log(response.data.daily[0].temperature);
-
   let currentHighTemperature = Math.round(
     response.data.daily[0].temperature.maximum
   );
@@ -136,10 +141,10 @@ function pageRefresh(city) {
   getForecast(apiforecastURL);
 }
 
-let currentDateELement = document.querySelector("#current-date");
+/* let currentDateELement = document.querySelector("#current-date");
 let currentDate = new Date();
 
-currentDateELement.innerHTML = formatDate(currentDate);
+currentDateELement.innerHTML = formatDate(currentDate); */
 
 let searchForm = document.querySelector("#city-search");
 searchForm.addEventListener("submit", search);
