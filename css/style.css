@@ -131,10 +131,13 @@ button:focus {
 .temp-units {
   text-decoration: none;
   color: white;
+  font-size: 20px;
+  position: relative;
+  bottom: 10px;
 }
 
 .low-temp {
-  padding-left: 40px;
+  padding-left: 55px;
 }
 
 .current-temperature-icon {
@@ -144,8 +147,14 @@ button:focus {
 
 .boldtext {
   font-weight: bold;
+  font-size: 40px;
 }
 
-.unboldtext {
-  font-weight: 300;
+.current-temperature-value {
+  padding-left: 20px;
+}
+
+.daily-temp {
+  font-size: 30px;
+  padding-left: 20px;
 }

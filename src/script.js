@@ -109,14 +109,18 @@ function getForecast(apiforecastURL) {
   axios.get(apiforecastURL).then(updateForecast);
 }
 
-function search(event) {
+function search(event, city) {
   event.preventDefault();
   let searchInputElement = document.querySelector("#enter-city");
   let metricElement = document.querySelector("#temp-units-C");
   metricElement.classList.add("boldtext");
   let imperialElement = document.querySelector("#temp-units-F");
   imperialElement.classList.remove("boldtext");
-  let city = searchInputElement.value;
+  if (searchInputElement.value) {
+    let city = searchInputElement.value;
+  } else {
+    let city = "Melbourne";
+  }
 
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${unit}`;
   getTemperature(apiUrl);
