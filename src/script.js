@@ -38,6 +38,8 @@ function convertTempC(event) {
   let unit = "metric";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${unit}`;
   getTemperature(apiUrl);
+  let apiforecastURL = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=${unit}`;
+  getForecast(apiforecastURL);
 }
 
 function convertTempF(event) {
@@ -55,6 +57,8 @@ function convertTempF(event) {
   let unit = "imperial";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${unit}`;
   getTemperature(apiUrl);
+  let apiforecastURL = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=${unit}`;
+  getForecast(apiforecastURL);
 }
 
 function updateTemperature(response) {
@@ -81,15 +85,30 @@ function updateTemperature(response) {
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = " " + currentWind + " ";
 }
+function updateForecast(response) {
+  console.log(response.data.daily[0].temperature);
 
-function updateForeCastTemperature(response) {}
+  let currentHighTemperature = Math.round(
+    response.data.daily[0].temperature.maximum
+  );
+  let temperatureHighElement = document.querySelector("#high-temp");
+  temperatureHighElement.innerHTML = currentHighTemperature;
+
+  let currentLowTemperature = Math.round(
+    response.data.daily[0].temperature.minimum
+  );
+  let temperatureLowElement = document.querySelector("#low-temp");
+  temperatureLowElement.innerHTML = currentLowTemperature;
+}
+
 function getTemperature(apiUrl) {
   axios.get(apiUrl).then(updateTemperature);
 }
 
 function getForecast(apiforecastURL) {
-  axios.get(apiforecastURL).then(updateForeCastTemperature);
+  axios.get(apiforecastURL).then(updateForecast);
 }
+
 function search(event) {
   event.preventDefault();
   let searchInputElement = document.querySelector("#enter-city");
