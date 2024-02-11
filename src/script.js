@@ -52,7 +52,7 @@ function convertTempF(event) {
   let city = cityElement.innerHTML;
 
   let windUnitElement = document.querySelector("#wind-unit");
-  windUnitElement.innerHTML = " miles/hour";
+  windUnitElement.innerHTML = " miles/hr";
 
   let unit = "imperial";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${unit}`;
