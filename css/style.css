@@ -127,3 +127,8 @@ button:focus {
   background: rgba(39, 41, 109, 1);
   color: white;
 }
+
+.temp-units {
+  text-decoration: none;
+  color: white;
+}

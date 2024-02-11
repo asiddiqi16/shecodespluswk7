@@ -18,20 +18,26 @@
   <body>
     <div class="weather-app">
       <header>
-        <form class="city-search">
+        <form class="city-search" id="city-search">
           <input
             type="search"
             placeholder="Enter a city"
             required
             class="enter-city"
+            id="enter-city"
           />
           <input type="submit" value="SEARCH" class="submit-city" />
         </form>
       </header>
       <main>
         <div class="current-city">
-          <h1>Melbourne</h1>
-          <p>Sunday 09:53am, Sunny</p>
+          <h1>
+            <span class="city-selected" id="city-selected">Melbourne</span>
+          </h1>
+          <p>
+            <span class="current-date" id="current-date">Sunday 09:53am</span>,
+            <span class="todays-weather" id="todays-weather">Sunny</span>
+          </p>
         </div>
         <div class="current-weather-details">
           <ul>
@@ -42,7 +48,13 @@
         </div>
         <div class="current-weather">
           <ul class="todays-temperature">
-            <li><strong>23°C </strong>| °F <br /></li>
+            <li>
+              <strong
+                >23
+                <a href="#" class="temp-units" id="temp-units-C">°C </a></strong
+              >| <a href="#" class="temp-units" id="temp-units-C">°F </a>
+              <br />
+            </li>
             <li>☀ <br /></li>
             <li><strong>37°</strong> 20° <br /></li>
           </ul>
