@@ -133,7 +133,7 @@ button:focus {
   color: white;
   font-size: 20px;
   position: relative;
-  bottom: 10px;
+  bottom: 30px;
 }
 
 .low-temp {
@@ -148,6 +148,8 @@ button:focus {
 .boldtext {
   font-weight: bold;
   font-size: 40px;
+  position: relative;
+  bottom: 10px;
 }
 
 .current-temperature-value {
@@ -157,4 +159,5 @@ button:focus {
 .daily-temp {
   font-size: 30px;
   padding-left: 20px;
+  padding-top: 30px;
 }

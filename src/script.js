@@ -109,18 +109,26 @@ function getForecast(apiforecastURL) {
   axios.get(apiforecastURL).then(updateForecast);
 }
 
-function search(event, city) {
+function search(event) {
   event.preventDefault();
   let searchInputElement = document.querySelector("#enter-city");
   let metricElement = document.querySelector("#temp-units-C");
   metricElement.classList.add("boldtext");
   let imperialElement = document.querySelector("#temp-units-F");
   imperialElement.classList.remove("boldtext");
-  if (searchInputElement.value) {
-    let city = searchInputElement.value;
-  } else {
-    let city = "Melbourne";
-  }
+
+  let city = searchInputElement.value;
+
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${unit}`;
+  getTemperature(apiUrl);
+  let apiforecastURL = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=${unit}`;
+  getForecast(apiforecastURL);
+}
+function pageRefresh(city) {
+  let metricElement = document.querySelector("#temp-units-C");
+  metricElement.classList.add("boldtext");
+  let imperialElement = document.querySelector("#temp-units-F");
+  imperialElement.classList.remove("boldtext");
 
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${unit}`;
   getTemperature(apiUrl);
@@ -144,3 +152,5 @@ tempUnitFaranheitElement.addEventListener("click", convertTempF);
 
 let apiKey = "483ecb596o30da81tf76d2a4bf19d4a6";
 let unit = "metric";
+
+pageRefresh("Melbourne");
