@@ -50,13 +50,31 @@
           <ul class="todays-temperature">
             <li>
               <strong
-                >23
-                <a href="#" class="temp-units" id="temp-units-C">°C </a></strong
-              >| <a href="#" class="temp-units" id="temp-units-C">°F </a>
+                ><span
+                  class="current-temperature-value"
+                  id="current-temperature-value"
+                  >23</span
+                ></strong
+              >
+
+              <a href="#" class="temp-units boldtext" id="temp-units-C">°C </a>
+              |
+              <a href="#" class="temp-units" id="temp-units-F">°F </a>
               <br />
             </li>
-            <li>☀ <br /></li>
-            <li><strong>37°</strong> 20° <br /></li>
+            <li>
+              <span
+                class="current-temperature-icon"
+                id="current-temperature-icon"
+                >☀ <br
+              /></span>
+            </li>
+            <li>
+              <strong>
+                <span class="high-temp" id="high-temp">37</span>°</strong
+              >
+              <span class="low-temp" id="low-temp">20</span>° <br />
+            </li>
           </ul>
         </div>
       </main>

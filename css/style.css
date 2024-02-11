@@ -132,3 +132,20 @@ button:focus {
   text-decoration: none;
   color: white;
 }
+
+.low-temp {
+  padding-left: 40px;
+}
+
+.current-temperature-icon {
+  display: flex;
+  justify-content: center;
+}
+
+.boldtext {
+  font-weight: bold;
+}
+
+.unboldtext {
+  font-weight: 300;
+}
