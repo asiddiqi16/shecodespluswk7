@@ -33,6 +33,8 @@ function convertTempC(event) {
   event.preventDefault();
   let cityElement = document.querySelector("#city-selected");
   let city = cityElement.innerHTML;
+  let windUnitElement = document.querySelector("#wind-unit");
+  windUnitElement.innerHTML = " km/hr";
   let unit = "metric";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${unit}`;
   getTemperature(apiUrl);
@@ -46,12 +48,19 @@ function convertTempF(event) {
   event.preventDefault();
   let cityElement = document.querySelector("#city-selected");
   let city = cityElement.innerHTML;
+
+  let windUnitElement = document.querySelector("#wind-unit");
+  windUnitElement.innerHTML = " miles/hour";
+
   let unit = "imperial";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${unit}`;
   getTemperature(apiUrl);
 }
 
 function updateTemperature(response) {
+  let cityElement = document.querySelector("#city-selected");
+  cityElement.innerHTML = response.data.city;
+
   let currentTemperature = Math.round(response.data.temperature.current);
   let temperatureElement = document.querySelector("#current-temperature-value");
   temperatureElement.innerHTML = currentTemperature;
@@ -59,22 +68,41 @@ function updateTemperature(response) {
   let weatherIconUrl = response.data.condition.icon_url;
   let weatherIconElement = document.querySelector("#current-temperature-icon");
   weatherIconElement.innerHTML = `<img src = "${weatherIconUrl}" width=120px>`;
+
+  let todaysCondition = response.data.condition.description;
+  let todaysConditionElement = document.querySelector("#todays-weather");
+  todaysConditionElement.innerHTML = todaysCondition;
+
+  let currentHumidity = Math.round(response.data.temperature.humidity);
+  let humidityElement = document.querySelector("#humidity");
+  humidityElement.innerHTML = " " + currentHumidity + " ";
+
+  let currentWind = Math.round(response.data.wind.speed * 3.6);
+  let windElement = document.querySelector("#wind");
+  windElement.innerHTML = " " + currentWind + " ";
 }
 
+function updateForeCastTemperature(response) {}
 function getTemperature(apiUrl) {
   axios.get(apiUrl).then(updateTemperature);
 }
 
+function getForecast(apiforecastURL) {
+  axios.get(apiforecastURL).then(updateForeCastTemperature);
+}
 function search(event) {
   event.preventDefault();
   let searchInputElement = document.querySelector("#enter-city");
-  let cityElement = document.querySelector("#city-selected");
-  cityElement.innerHTML = searchInputElement.value;
-
+  let metricElement = document.querySelector("#temp-units-C");
+  metricElement.classList.add("boldtext");
+  let imperialElement = document.querySelector("#temp-units-F");
+  imperialElement.classList.remove("boldtext");
   let city = searchInputElement.value;
 
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${unit}`;
   getTemperature(apiUrl);
+  let apiforecastURL = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=${unit}`;
+  getForecast(apiforecastURL);
 }
 
 let currentDateELement = document.querySelector("#current-date");
