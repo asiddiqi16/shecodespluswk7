@@ -136,7 +136,7 @@ button:focus {
   color: white;
   font-size: 20px;
   position: relative;
-  bottom: 40px;
+  bottom: 20px;
 }
 
 .low-temp {
