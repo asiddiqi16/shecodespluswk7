@@ -91,6 +91,20 @@ function updateTemperature(response) {
   dateElement.innerHTML = formatDate(todaysDate);
 }
 
+function formatDay(timestamp) {
+  let todaysDate = new Date(timestamp * 1000);
+  let forecastDays = [
+    "Sun",
+    "Mon",
+    "Tues",
+    "Wed",
+    "Thurs",
+    "Fri",
+    "Sat",
+    "Sun",
+  ];
+  return forecastDays[todaysDate.getDay()];
+}
 function updateForecast(response) {
   console.log(response);
   let currentHighTemperature = Math.round(
@@ -118,7 +132,7 @@ function updateForecast(response) {
     <div class="col-2">
       <ul>
         <li class="forecast-element">
-          <span class="forecastday">Tues</span>
+          <span class="forecastday">${formatDay(day[i].time)}</span>
         </li>
         <li class="forecast-element">
           <span class="forecast-weather-icon"><img src = "${
