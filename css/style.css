@@ -195,8 +195,15 @@ button:focus {
   box-shadow: -8px 0px 29px rgba(39, 41, 109, 0.2);
   border-radius: 10px;
   padding: 15px 35px;
+  margin: 10px;
 }
 
 .forecast-element {
   margin-bottom: 30px;
+}
+
+.weather-forecast {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }

@@ -141,6 +141,33 @@ function pageRefresh(city) {
   getForecast(apiforecastURL);
 }
 
+function displayForecast() {
+  let forecast = document.querySelector("#weather-forecast");
+  let forecastDays = ["Sun", "Mon", "Tues", "Wed", "Thurs"];
+  let forecastHTML = "";
+  forecastDays.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+  <div class="row">
+    <div class="col-2">
+      <ul>
+        <li class="forecast-element">
+          <span class="forecastday">${day}</span>
+        </li>
+        <li class="forecast-element">
+          <span class="forecast-weather-icon">☀</span>
+        </li>
+        <li class="forecast-element">
+          <span class="high-temp-forecast">18 </span>°
+          <span class="low-temp-forecast">12</span>°
+        </li>
+      </ul>
+    </div>
+  </div>`;
+  });
+  forecast.innerHTML = forecastHTML;
+}
 /* let currentDateELement = document.querySelector("#current-date");
 let currentDate = new Date();
 
@@ -159,3 +186,4 @@ let apiKey = "483ecb596o30da81tf76d2a4bf19d4a6";
 let unit = "metric";
 
 pageRefresh("Melbourne");
+displayForecast();
