@@ -106,7 +106,6 @@ function formatDay(timestamp) {
   return forecastDays[todaysDate.getDay()];
 }
 function updateForecast(response) {
-  console.log(response);
   let currentHighTemperature = Math.round(
     response.data.daily[0].temperature.maximum
   );
