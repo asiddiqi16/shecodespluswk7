@@ -86,13 +86,13 @@ function updateTemperature(response) {
   windElement.innerHTML = " " + currentWind + " ";
 
   let todaysDate = new Date(response.data.time * 1000);
-  /*   console.log(response.data);
-  console.log(response.data.time); */
   let dateElement = document.querySelector("#current-date");
 
   dateElement.innerHTML = formatDate(todaysDate);
 }
+
 function updateForecast(response) {
+  console.log(response);
   let currentHighTemperature = Math.round(
     response.data.daily[0].temperature.maximum
   );
@@ -104,6 +104,40 @@ function updateForecast(response) {
   );
   let temperatureLowElement = document.querySelector("#low-temp");
   temperatureLowElement.innerHTML = currentLowTemperature;
+
+  let forecast = document.querySelector("#weather-forecast");
+  let forecastDays = ["Sun", "Mon", "Tues", "Wed", "Thurs"];
+  let forecastHTML = "";
+  day = response.data.daily;
+
+  for (let i = 1; i < 6; i++) {
+    forecastHTML =
+      forecastHTML +
+      `
+  <div class="row">
+    <div class="col-2">
+      <ul>
+        <li class="forecast-element">
+          <span class="forecastday">Tues</span>
+        </li>
+        <li class="forecast-element">
+          <span class="forecast-weather-icon"><img src = "${
+            day[i].condition.icon_url
+          }" width=80px></span>
+        </li>
+        <li class="forecast-element">
+          <span class="high-temp-forecast">${Math.round(
+            day[i].temperature.maximum
+          )} </span>°
+          <span class="low-temp-forecast">${Math.round(
+            day[i].temperature.minimum
+          )}</span>°
+        </li>
+      </ul>
+    </div>
+  </div>`;
+  }
+  forecast.innerHTML = forecastHTML;
 }
 
 function getTemperature(apiUrl) {
@@ -141,38 +175,6 @@ function pageRefresh(city) {
   getForecast(apiforecastURL);
 }
 
-function displayForecast() {
-  let forecast = document.querySelector("#weather-forecast");
-  let forecastDays = ["Sun", "Mon", "Tues", "Wed", "Thurs"];
-  let forecastHTML = "";
-  forecastDays.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-  <div class="row">
-    <div class="col-2">
-      <ul>
-        <li class="forecast-element">
-          <span class="forecastday">${day}</span>
-        </li>
-        <li class="forecast-element">
-          <span class="forecast-weather-icon">☀</span>
-        </li>
-        <li class="forecast-element">
-          <span class="high-temp-forecast">18 </span>°
-          <span class="low-temp-forecast">12</span>°
-        </li>
-      </ul>
-    </div>
-  </div>`;
-  });
-  forecast.innerHTML = forecastHTML;
-}
-/* let currentDateELement = document.querySelector("#current-date");
-let currentDate = new Date();
-
-currentDateELement.innerHTML = formatDate(currentDate); */
-
 let searchForm = document.querySelector("#city-search");
 searchForm.addEventListener("submit", search);
 
@@ -186,4 +188,3 @@ let apiKey = "483ecb596o30da81tf76d2a4bf19d4a6";
 let unit = "metric";
 
 pageRefresh("Melbourne");
-displayForecast();

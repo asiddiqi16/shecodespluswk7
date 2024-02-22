@@ -182,7 +182,7 @@ button:focus {
   font-weight: 500;
 }
 .forecast-weather-icon {
-  padding-left: 30px;
+  width: 10px;
 }
 .forecastday {
   padding-left: 10px;
@@ -194,12 +194,12 @@ button:focus {
   background-color: #e3f6f7;
   box-shadow: -8px 0px 29px rgba(39, 41, 109, 0.2);
   border-radius: 10px;
-  padding: 15px 35px;
+  padding: 25px 35px;
   margin: 10px;
 }
 
 .forecast-element {
-  margin-bottom: 30px;
+  margin-bottom: 5px;
 }
 
 .weather-forecast {
